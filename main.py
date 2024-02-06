@@ -1,7 +1,11 @@
+
 from random import randint
+
+from start_game_banner import run_screensaver
 
 
 def attack(char_name: str, char_class: str) -> str:
+    """Generate an atack depending on the charactor selected."""
     if char_class == 'warrior':
         return (f'{char_name} нанёс урон противнику, равный'
                 f'{5 + randint(3, 5)}')
@@ -15,6 +19,7 @@ def attack(char_name: str, char_class: str) -> str:
 
 
 def defence(char_name: str, char_class: str) -> str:
+    """Generate a defence depending on the charactor selected."""
     if char_class == 'warrior':
         return (f'{char_name} блокировал'
                 f'{10 + randint(5, 10)} ед. урона')
@@ -28,6 +33,7 @@ def defence(char_name: str, char_class: str) -> str:
 
 
 def special(char_name: str, char_class: str) -> str:
+    """Generate a apecial skill depending on the charactor selected."""
     if char_class == 'warrior':
         return (f'{char_name} применил специальное умение'
                 f'«Выносливость {80 + 25}»')
@@ -41,6 +47,12 @@ def special(char_name: str, char_class: str) -> str:
 
 
 def start_training(char_name: str, char_class: str) -> str:
+    """Train the charactor.
+
+    Greet the charactor.
+    Offer commands for training.
+    End with 'skip'.
+    """
     if char_class == 'warrior':
         print(f'{char_name}, ты Воитель — отличный боец ближнего боя.')
     if char_class == 'mage':
@@ -65,13 +77,13 @@ def start_training(char_name: str, char_class: str) -> str:
 
 
 def choice_char_class() -> str:
+    """Choose the charactor."""
     approve_choice: str = ''
     char_class: str = ''
     while approve_choice != 'y':
-        char_class: str = input('Введи название персонажа,',
-                                'за которого хочешь играть:',
-                                'Воитель — warrior, Маг — mage,',
-                                'Лекарь — healer: ')
+        input_txt = """Введи название персонажа, за которого хочешь
+                    играть: Воитель — warrior, Маг — mage, Лекарь — healer:"""
+        char_class = input(input_txt)
         if char_class == 'warrior':
             print('Воитель — дерзкий воин ближнего боя.',
                   'Сильный, выносливый и отважный.')
@@ -81,13 +93,14 @@ def choice_char_class() -> str:
         if char_class == 'healer':
             print('Лекарь — могущественный заклинатель.',
                   'Черпает силы из природы, веры и духов.')
-        approve_choice: str = input('Нажми (Y), чтобы подтвердить выбор,',
-                                    'или любую другую кнопку,',
-                                    'чтобы выбрать другого персонажа ').lower()
+        input_txt2 = """Нажми (Y), чтобы подтвердить выбор, или
+                     любую другую кнопку, чтобы выбрать другого персонажа: """
+        approve_choice = input(input_txt2).lower()
     return char_class
 
 
-def main():
+if __name__ == '__main__':
+    run_screensaver()
     print('Приветствую тебя, искатель приключений!')
     print('Прежде чем начать игру...')
     char_name: str = input('...назови себя: ')
